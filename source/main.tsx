@@ -1,5 +1,5 @@
 import * as React  from 'react'; 
 import * as ReactDOM from 'react-dom';
-import {DemoComponent} from './demo/demo';
+import {CodeBox} from './CodeBox/CodeBox';
 
-ReactDOM.render(<DemoComponent/>,document.getElementById('mount'))
+ReactDOM.render(<CodeBox/>,document.getElementById('mount'))

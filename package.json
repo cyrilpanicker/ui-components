@@ -38,6 +38,7 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
+    "codemirror": "^5.15.2",
     "jquery": "^2.2.4",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
