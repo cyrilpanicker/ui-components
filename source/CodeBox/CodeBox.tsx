@@ -6,6 +6,8 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/monokai.css';
 import 'codemirror/mode/javascript/javascript';
 
+import './codemirror-overrides';
+
 const defaultOptions = {
     mode:'javascript',
     lineNumbers:true,
@@ -29,10 +31,11 @@ export class CodeBox extends React.Component<any,any> {
     render(){
         return (
             <div
-                className={'codebox'+this.props.className?'-'+this.props.className:''}
+                className={(this.props.className?this.props.className+'-':'')+'codebox'}
                 ref={this.initializeNode.bind(this)}
             >
             </div>
         );
     }
+
 }

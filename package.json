@@ -1,8 +1,6 @@
 {
   "name": "webpack-demo",
   "version": "1.0.0",
-  "description": "",
-  "main": "webpack.config.js",
   "scripts": {
     "remove:typings": "rimraf ./typings",
     "remove:build": "concurrently \"rimraf ./build\" \"rimraf ./bundled-build\"",
