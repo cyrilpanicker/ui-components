@@ -13,11 +13,11 @@
     "bundle": "webpack",
     "bundle:watch": "webpack --watch",
     "build": "npm run remove:build && concurrently \"npm run compile:ts\" \"npm run compile:sass\" \"npm run copy:index\" && npm run bundle",
-    "build:watch": "concurrently \"npm run compile:ts:watch\" \"npm run bundle:watch\" \"npm run compile:sass:watch\"",
+    "watch": "concurrently \"npm run compile:ts:watch\" \"npm run compile:sass:watch\" \"npm run bundle:watch\"",
     "postinstall": "npm run install:typings && npm run build",
     "run:server": "lite-server --config ./server-config.json",
     "start": "npm run run:server",
-    "start:watch": "concurrently \"npm run run:server\" \"npm run build:watch\""
+    "start:watch": "concurrently \"npm run run:server\" \"npm run watch\""
   },
   "author": "",
   "license": "ISC",
