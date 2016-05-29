@@ -1,5 +1,5 @@
 {
-  "name": "webpack-demo",
+  "name": "ui-components",
   "version": "1.0.0",
   "scripts": {
     "remove:typings": "rimraf ./typings",
@@ -13,9 +13,10 @@
     "bundle": "webpack",
     "bundle:watch": "webpack --watch",
     "build": "npm run remove:build && concurrently \"npm run compile:ts\" \"npm run compile:sass\" \"npm run copy:index\" && npm run bundle",
-    "watch": "concurrently \"npm run compile:ts:watch\" \"npm run compile:sass:watch\" \"npm run bundle:watch\"",
+    "livereload": "livereload ./bundled-build",
+    "watch": "concurrently \"npm run compile:ts:watch\" \"npm run compile:sass:watch\" \"npm run bundle:watch\" \"npm run livereload\"",
     "postinstall": "npm run install:typings && npm run build",
-    "run:server": "lite-server --config ./server-config.json",
+    "run:server": "cd ./bundled-build && static",
     "start": "npm run run:server",
     "start:watch": "concurrently \"npm run run:server\" \"npm run watch\""
   },
@@ -25,10 +26,11 @@
     "concurrently": "^2.1.0",
     "css-loader": "^0.23.1",
     "html-webpack-plugin": "^2.17.0",
-    "lite-server": "^2.2.0",
+    "livereload": "^0.4.1",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "node-sass": "^3.7.0",
+    "node-static": "^0.7.7",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
     "typescript": "^1.8.10",
