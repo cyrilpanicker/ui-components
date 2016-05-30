@@ -15,14 +15,16 @@ module.exports = {
         filename:'app.js'
     },
     devtool:[
-        'source-map'
+        // 'source-map'
     ],
     resolve:{
         extensions:['','.js','.css']
     },
     module:{
         loaders:[
-            {test:/\.css$/,loader:'style-loader!css-loader'}
+            {test:/\.css$/,loader:'style-loader!css-loader'},
+            {test: /\.png$/,loader:'url-loader?limit=100000'},
+            {test: /\.jpg$/,loader:'file-loader'}
         ]
     },
     plugins:[

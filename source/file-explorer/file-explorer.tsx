@@ -1,33 +1,74 @@
 import * as React from 'react';
+import * as $ from 'jquery';
 import './file-explorer-styles';
 
-
-export class FileExplorer extends React.Component<any,any>{
+class FileListItem extends React.Component<any,any> {
+    
+    onToggle(item,event){
+        if(item.children){
+            this.props.onFolderToggle(item,event);
+        }
+        event.stopPropagation();
+    }
+    
     render(){
-        return getUL(this.props.fileModel);
+
+        const {item} = this.props;
+        const {id,children} = item;
+        
+        let classNames = 'item ';
+        classNames += item.children?'folder ':'';
+        classNames += (item.children && item.expanded)?'expanded':'';
+
+        return (
+            <li
+                className={classNames}
+                onClick={this.onToggle.bind(this,item)}
+            >
+                {id.substring(id.lastIndexOf('/')+1)}
+                {children && <FileList items={children} onFolderToggle={this.onToggle.bind(this)} />}
+            </li>
+        );
+    }
+
+}
+
+class FileList extends React.Component<any,any>{
+    render(){
+        const {items,onFolderToggle} = this.props;
+        return (
+            <ul className='list'>
+                {items.map(item => <FileListItem key={item.id} item={item} onFolderToggle={onFolderToggle}/>)}
+            </ul>
+        );
     }
 }
 
-const getUL = (list:any[]) => {
-    return (
-        <ul>
-            {
-                list.map(item=>{
-                    return (
-                        <li
-                            key={item.id}
-                            className="open"
-                            onClick={()=>item.open=!item.open}
-                        >
-                            {item.id.substring(item.id.lastIndexOf('/')+1)}
-                            {item.children?getUL(item.children):null}
-                        </li>
-                    );
-                })
-            }
-        </ul>
-    );
-};
+
+export class FileExplorer extends React.Component<any,any>{
+    constructor(){
+        super();
+        this.state = {};
+    }
+    componentDidMount(){
+        this.setState($.extend(this.state,{
+            fileModel:this.props.fileModel
+        }))
+    }
+    onFolderToggle(item){
+        item.expanded = !item.expanded;
+        this.setState(this.state);
+    }
+    render(){
+        const {fileModel,className,title} = this.props;
+        return (
+            <div className={(className?className+'-':'')+'file-explorer'} >
+                {title && <div className="title">{title}</div>}
+                <FileList items={fileModel} onFolderToggle={this.onFolderToggle.bind(this)} />
+            </div>
+        );
+    }
+}
 
 export const getFileModel = (filePaths:string[]) => {
     const fileModel = [];

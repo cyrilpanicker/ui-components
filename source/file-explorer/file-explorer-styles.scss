@@ -1,9 +1,22 @@
 [class$="file-explorer"]{
-    li{
-        cursor: pointer;
-        // ul{
-        //     left:0.5em;
-        //     position: relative;
-        // }
+    background-color: rgb(37, 37, 38);
+    color: #d6cbcb;
+    .list{
+        // list-style-type: none;
+        .item{
+            cursor: pointer;
+            &>.list{
+                display: none;
+            }
+            &.expanded>.list{
+                display: block;
+            }
+            &.folder{
+                // list-style-image: url('../images/arrow.png');
+                item{
+                    list-style-type: none;
+                }
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@ import * as React  from 'react';
 import * as ReactDOM from 'react-dom';
 import {FileExplorer,getFileModel} from './file-explorer/file-explorer';
 import {CodeBox} from './code-box/code-box';
+import {DemoComponent} from './demo/demo';
 import * as $ from 'jquery';
 // import './reset';
 
@@ -26,4 +27,6 @@ const filePaths = [
 
 const fileModel = getFileModel(filePaths);
 
-ReactDOM.render(<FileExplorer fileModel={fileModel} className="server" />,document.getElementById('mount'))
+// ReactDOM.render(<DemoComponent/>,document.getElementById('mount'));
+// ReactDOM.render(<CodeBox/>,document.getElementById('mount'));
+ReactDOM.render(<FileExplorer fileModel={fileModel} title="Server" />,document.getElementById('mount'));

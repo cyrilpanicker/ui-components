@@ -10,9 +10,11 @@
     "compile:sass": "node-sass ./source --output ./build --output-style expanded",
     "compile:sass:watch": "node-sass ./source --output ./build --output-style expanded --watch",
     "copy:index": "mkdirp ./build && ncp ./source/index.html ./build/index.html",
+    "copy:images": "mkdirp ./build/images && ncp ./source/images ./build/images",
+    "copy": "concurrently \"npm run copy:index\" \"npm run copy:images\"",
     "bundle": "webpack",
     "bundle:watch": "webpack --watch",
-    "build": "npm run remove:build && concurrently \"npm run compile:ts\" \"npm run compile:sass\" \"npm run copy:index\" && npm run bundle",
+    "build": "npm run remove:build && concurrently \"npm run compile:ts\" \"npm run compile:sass\" \"npm run copy\" && npm run bundle",
     "livereload": "livereload ./bundled-build",
     "watch": "concurrently \"npm run compile:ts:watch\" \"npm run compile:sass:watch\" \"npm run bundle:watch\" \"npm run livereload\"",
     "postinstall": "npm run install:typings && npm run build",
@@ -25,6 +27,7 @@
   "devDependencies": {
     "concurrently": "^2.1.0",
     "css-loader": "^0.23.1",
+    "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.17.0",
     "livereload": "^0.4.1",
     "mkdirp": "^0.5.1",
@@ -35,6 +38,7 @@
     "style-loader": "^0.13.1",
     "typescript": "^1.8.10",
     "typings": "^1.0.4",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.1"
   },
   "dependencies": {
