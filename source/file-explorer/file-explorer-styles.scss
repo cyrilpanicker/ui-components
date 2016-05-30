@@ -1,24 +1,33 @@
 [class$="file-explorer"]{
+    
     font-family: 'Roboto', sans-serif;
-    font-size: 13px;
-    background-color: rgb(37, 37, 38);
     color: #d6cbcb;
-    .list{
-        list-style-type: none;
-        .item{
-            cursor: pointer;
-            &>.list{
-                display: none;
-            }
-            &.expanded>.list{
-                display: block;
-            }
-            &.folder{
-                // list-style-image: url('../images/arrow.png');
-                item{
-                    list-style-type: none;
-                }
+    background-color: #252526;
+    font-size: 13px;
+    line-height: 22px;
+    max-width:250px;
+    
+    &>.list{
+        //applies only on the top-level list
+        margin-left: 20px;
+    }
+    
+    li{
+        margin-left:20px;
+        cursor: pointer;
+        .list{
+            //by default all lists are collapsed
+            display: none;
+        }
+        &.expanded > .list{
+            display: block;
+        }
+        &.folder{
+            list-style-image: url('../images/collapsed-folder.png');
+            &.expanded{
+                list-style-image: url('../images/expanded-folder.png');
             }
         }
     }
+
 }

@@ -4,7 +4,7 @@ import {FileExplorer,getFileModel} from './file-explorer/file-explorer';
 import {CodeBox} from './code-box/code-box';
 import {DemoComponent} from './demo/demo';
 import * as $ from 'jquery';
-// import './reset';
+import './reset';
 
 const filePaths = [
     ".gitignore",

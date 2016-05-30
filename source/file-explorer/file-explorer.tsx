@@ -3,42 +3,35 @@ import * as $ from 'jquery';
 import './file-explorer-styles';
 
 class FileListItem extends React.Component<any,any> {
-    
-    onToggle(item,event){
-        if(item.children){
-            this.props.onFolderToggle(item,event);
-        }
+    onEvent(item,event:Event){
+        this.props.onEvent(item,event);
         event.stopPropagation();
     }
-    
     render(){
-
         const {item} = this.props;
         const {id,children} = item;
-        
-        let classNames = 'item ';
-        classNames += item.children?'folder ':'';
-        classNames += (item.children && item.expanded)?'expanded':'';
-
+        const type = item.children?'folder':'';
+        const expanded = (item.children && item.expanded)?'expanded':'';
+        let className = `${type} ${expanded}`;
+        className = className !== ' ' ? className : '';
         return (
             <li
-                className={classNames}
-                onClick={this.onToggle.bind(this,item)}
+                className={className}
+                onClick={this.onEvent.bind(this,item)}
             >
                 {id.substring(id.lastIndexOf('/')+1)}
-                {children && <FileList items={children} onFolderToggle={this.onToggle.bind(this)} />}
+                {children && <FileList items={children} onEvent={this.onEvent.bind(this)} />}
             </li>
         );
     }
-
 }
 
 class FileList extends React.Component<any,any>{
     render(){
-        const {items,onFolderToggle} = this.props;
+        const {items,onEvent} = this.props;
         return (
             <ul className='list'>
-                {items.map(item => <FileListItem key={item.id} item={item} onFolderToggle={onFolderToggle}/>)}
+                {items.map(item => <FileListItem key={item.id} item={item} onEvent={onEvent}/>)}
             </ul>
         );
     }
@@ -55,8 +48,13 @@ export class FileExplorer extends React.Component<any,any>{
             fileModel:this.props.fileModel
         }))
     }
-    onFolderToggle(item){
-        item.expanded = !item.expanded;
+    onEvent(item,event:Event){
+        switch(event.type){
+            case 'click':
+                if(item.children){
+                    item.expanded = !item.expanded;
+                }
+        }
         this.setState(this.state);
     }
     render(){
@@ -64,7 +62,7 @@ export class FileExplorer extends React.Component<any,any>{
         return (
             <div className={(className?className+'-':'')+'file-explorer'} >
                 {title && <div className="title">{title}</div>}
-                <FileList items={fileModel} onFolderToggle={this.onFolderToggle.bind(this)} />
+                <FileList items={fileModel} onEvent={this.onEvent.bind(this)} />
             </div>
         );
     }
