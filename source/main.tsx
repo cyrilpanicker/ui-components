@@ -29,4 +29,4 @@ const fileModel = getFileModel(filePaths);
 
 // ReactDOM.render(<DemoComponent/>,document.getElementById('mount'));
 // ReactDOM.render(<CodeBox/>,document.getElementById('mount'));
-ReactDOM.render(<FileExplorer fileModel={fileModel} title="Server" />,document.getElementById('mount'));
+ReactDOM.render(<FileExplorer fileModel={fileModel} />,document.getElementById('mount'));
