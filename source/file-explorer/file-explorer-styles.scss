@@ -1,4 +1,4 @@
-[class$="file-explorer"]{
+.file-explorer{
     
     font-family: 'Roboto', sans-serif;
     color: #d6cbcb;
@@ -7,7 +7,7 @@
     line-height: 22px;
     max-width:250px;
     
-    &>.list{
+    &>ul{
         //applies only on the top-level list
         margin-left: 20px;
     }
@@ -15,17 +15,17 @@
     li{
         margin-left:20px;
         cursor: pointer;
-        .list{
+        ul{
             //by default all lists are collapsed
             display: none;
-        }
-        &.expanded > .list{
-            display: block;
         }
         &.folder{
             list-style-image: url('../images/collapsed-folder.png');
             &.expanded{
                 list-style-image: url('../images/expanded-folder.png');
+                & > ul{
+                    display: block;
+                }
             }
         }
     }

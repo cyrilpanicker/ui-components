@@ -30,7 +30,7 @@ class FileList extends React.Component<any,any>{
     render(){
         const {items,onEvent} = this.props;
         return (
-            <ul className='list'>
+            <ul>
                 {items.map(item => <FileListItem key={item.id} item={item} onEvent={onEvent}/>)}
             </ul>
         );
@@ -60,7 +60,7 @@ export class FileExplorer extends React.Component<any,any>{
     render(){
         const {fileModel,className,title} = this.props;
         return (
-            <div className={(className?className+'-':'')+'file-explorer'} >
+            <div className={(className?className+' ':'')+'file-explorer'} >
                 {title && <div className="title">{title}</div>}
                 <FileList items={fileModel} onEvent={this.onEvent.bind(this)} />
             </div>
