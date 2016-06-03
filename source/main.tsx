@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import {FileExplorer,getFileModel} from './file-explorer/file-explorer';
 import {CodeBox} from './code-box/code-box';
 import {DemoComponent} from './demo/demo';
+import {ContextMenuDemo} from './context-menu/context-menu-demo';
 import * as $ from 'jquery';
 import './reset';
 
@@ -29,4 +30,5 @@ const fileModel = getFileModel(filePaths);
 
 // ReactDOM.render(<DemoComponent/>,document.getElementById('mount'));
 // ReactDOM.render(<CodeBox/>,document.getElementById('mount'));
-ReactDOM.render(<FileExplorer fileModel={fileModel} className="server" />,document.getElementById('mount'));
+// ReactDOM.render(<FileExplorer fileModel={fileModel} className="server" />,document.getElementById('mount'));
+ReactDOM.render(<ContextMenuDemo/>,document.getElementById('mount'));
