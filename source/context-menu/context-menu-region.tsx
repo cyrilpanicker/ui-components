@@ -3,27 +3,27 @@ import {ContextMenu} from './context-menu';
 
 export class ContextMenuRegion extends React.Component<any,any>{
     
-    static defaultState = {
-        displayMenu : false,
-        menuPosition:{x:0,y:0}
-    };
-    
-    constructor(){
-        super();
-        this.state = ContextMenuRegion.defaultState
+    onClick(event:MouseEvent){
+        this.props.onClick(null);
+        event.stopPropagation();
     }
 
     render(){
-        const {menuItems,onMenuItemSelect,className} = this.props;
-        const {displayMenu,menuPosition} = this.state;
+        const {menuItems,onMenuItemSelect,onClick,children,displayMenu,menuPosition,className} = this.props;
         let _className = className ? className+' context-menu-region' : 'context-menu-region';
         return (
-            <ContextMenu
-                menuItems={menuItems}
-                onMenuItemSelect={onMenuItemSelect}
-                displayMenu={displayMenu}
-                menuPosition={menuPosition}
-            />
+            <div
+                className={_className}
+                onClick={this.onClick.bind(this)}
+            >
+                {children}
+                <ContextMenu
+                    menuItems={menuItems}
+                    onMenuItemSelect={onMenuItemSelect}
+                    displayMenu={displayMenu}
+                    menuPosition={menuPosition}
+                />
+            </div>
         );
     }
 }
